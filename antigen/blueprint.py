@@ -3,9 +3,7 @@ import os
 
 from jinja2 import Environment, FileSystemLoader, PackageLoader, Template
 
-from antigen import components_dir
-
-from .utils import files_in_folder, stdout_logger
+from .utils import files_in_folder, stdout_logger, components_dir
 
 log = stdout_logger(__name__)
 
