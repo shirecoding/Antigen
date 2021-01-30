@@ -29,11 +29,11 @@ setup(
     packages=find_packages() + ["antigen.resources"],
     package_data={
         "antigen.resources": [
-            "templates/*",
-            "templates/**/*",
-            "templates/**/**/*",
-            "templates/**/**/**/*",
-            "templates/**/**/**/**/*",
+            "*",
+            "**/*",
+            "**/**/*",
+            "**/**/**/*",
+            "**/**/**/**/*",
         ]
     },
 )
