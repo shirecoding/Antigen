@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+from glob import glob
+from importlib import import_module
+
+from jinja2 import Environment, FileSystemLoader, PackageLoader, Template
+
+from antigen import folders_in_folder, read_yaml, stdout_logger
+
+log = stdout_logger(__name__)
+module_folder = os.path.dirname(sys.modules["antigen"].__file__)
+resources_folder = os.path.join(module_folder, "resources")
+current_folder = os.path.abspath(os.curdir)
+
+templates = {
+    os.path.basename(t): t
+    for t in folders_in_folder(os.path.join(module_folder, "resources", "templates"))
+}
+
+# parsers
+parser = argparse.ArgumentParser(description="declarative ui generation")
+subparsers = parser.add_subparsers(dest="subcommand")
+
+# parsers - blueprint
+generate_parser = subparsers.add_parser(
+    "blueprint", description="generate components from blueprint"
+)
+generate_parser.add_argument("path", help="path to blueprint YAML")
+
+args = parser.parse_args()
+
+try:
+
+    if args.subcommand == "blueprint":
+        log.debug(read_yaml(args.path))
+
+    else:
+        parser.print_help()
+
+except Exception as e:
+    log.error(e)
+    parser.print_help()
+

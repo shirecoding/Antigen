@@ -1,0 +1,7 @@
+components:
+
+  - component: TextBox
+    props: 
+      id: standard-basic
+      label: Standard
+    children: Hello World!

@@ -1,6 +1,8 @@
 from distutils.core import setup
-from antigen import __version__
+
 from setuptools import find_packages
+
+from antigen import __version__
 
 setup(
     name="antigen",
@@ -8,7 +10,12 @@ setup(
     author="shirecoding",
     author_email="shirecoding@gmail.com",
     scripts=["bin/antigen"],
-    install_requires=["Jinja2"],
+    install_requires=[
+        "Jinja2",
+        "pytest",
+        "pytest-html",
+        "pytest-cov",
+    ],
     url="https://github.com/shirecoding/Antigen",
     download_url=f"https://github.com/shirecoding/Antigen/archive/{__version__}.tar.gz",
     long_description=open("README.md").read(),
